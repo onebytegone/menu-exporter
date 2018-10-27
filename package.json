@@ -9,14 +9,14 @@
   "author": "Ethan Smith",
   "license": "MIT",
   "devDependencies": {
-    "coveralls": "2.13.1",
-    "eslint": "3.19.0",
     "@silvermine/eslint-config": "1.5.0",
+    "coveralls": "3.0.2",
+    "eslint": "3.19.0",
     "expect.js": "0.3.1",
-    "grunt": "1.0.1",
+    "grunt": "1.0.3",
     "grunt-eslint": "19.0.0",
     "istanbul": "0.4.5",
-    "mocha": "3.3.0",
+    "mocha": "5.2.0",
     "rewire": "2.5.2",
     "sinon": "2.1.0"
   },
