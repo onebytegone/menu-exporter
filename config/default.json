@@ -1,0 +1,5 @@
+{
+   "endpoint": {
+      "url": "http://example.com?from=<%= today %>&to=<%= oneMonthFromNow %>"
+   }
+}

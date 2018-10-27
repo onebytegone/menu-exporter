@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('underscore'),
-    sinon = require('sinon'),
     expect = require('expect.js'),
     rewire = require('rewire'),
     App = rewire('../src/App.js');
@@ -25,23 +24,18 @@ describe('App', function() {
       expect(new App()).to.be.an('object');
    });
 
-   describe('sayHello', function() {
-      var logStub;
+   describe('_parseMealTextIntoItems', function() {
+      var app = new App();
 
-      beforeEach(function() {
-         logStub = sinon.stub(fakeConsole, 'log');
+      it('seperates items by line', function() {
+         expect(app._parseMealTextIntoItems('Ice Cream')).to.eql([ 'Ice Cream' ]);
+         expect(app._parseMealTextIntoItems('Cod\r\nLemon\r\nBread')).to.eql([ 'Cod', 'Lemon', 'Bread' ]);
       });
 
-      afterEach(function() {
-         logStub.restore();
-      });
-
-      it('prints hello', function() {
-         var app = new App();
-
-         expect(app.sayHello()).to.be(undefined);
-         sinon.assert.calledOnce(logStub);
-         sinon.assert.calledWithExactly(logStub, 'Hello!');
+      it('seperates multiple items on same line', function() {
+         expect(app._parseMealTextIntoItems('Potatoes / Ketchup\r\nGranola w/ Cranberries\r\nButter / Jam/Jelly'))
+            .to
+            .eql([ 'Potatoes', 'Ketchup', 'Granola w/ Cranberries', 'Butter', 'Jam/Jelly' ]);
       });
 
    });
