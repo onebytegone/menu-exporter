@@ -66,13 +66,16 @@ module.exports = Class.extend({
    },
 
    _parseMealTextIntoItems: function(mealText) {
-      var mealItems = mealText.split('\r\n');
-
-      mealItems = _.reduce(mealItems, function(memo, item) {
-         return _.union(memo, item.split(' / '));
-      }, []);
-
-      return mealItems;
+      return _.chain(mealText.split('\r\n'))
+         .map(function(item) {
+            return item.split(' / ');
+         })
+         .flatten()
+         .map(function(item) {
+            return item.trim();
+         })
+         .filter(_.identity)
+         .value();
    },
 
    _putMenuToS3: function(menu) {
